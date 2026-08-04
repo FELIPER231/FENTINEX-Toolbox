@@ -1,4 +1,4 @@
-import { writeTextFile, readTextFile, mkdir, remove, exists } from "@tauri-apps/plugin-fs";
+﻿import { writeTextFile, readTextFile, mkdir, remove, exists } from "@tauri-apps/plugin-fs";
 import { tempDir, join, dirname } from "@tauri-apps/api/path";
 import { Command } from "@tauri-apps/plugin-shell";
 import { app } from "@tauri-apps/api";
@@ -56,7 +56,7 @@ async function detectOsLocale() {
     return osLang;
   }
 
-  // Prefix match: "de-DE" → "de"
+  // Prefix match: "de-DE" â†’ "de"
   const prefix = osLang.split("-")[0];
   if (prefix !== osLang && supported.has(prefix)) {
     return prefix;
@@ -97,7 +97,7 @@ async function alertForUpdates() {
   });
 
   if (updateAsk === true) {
-    await openUrl("https://github.com/flick9000/winscript/releases/latest");
+    await openUrl("https://github.com/FELIPER231/FENTINEX-Toolbox/releases/latest");
   } else {
     return;
   }
@@ -257,7 +257,7 @@ const title = document.getElementById("content-header"); // Select the header el
 if (tabs.length > 0 && contents.length > 0) {
   tabs[0].classList.add("active");
   contents[0].classList.add("active");
-  title.textContent = tabs[0].textContent || "WinScript"; // Update header with the first tab's text
+  title.textContent = tabs[0].textContent || "FENTINEX Toolbox"; // Update header with the first tab's text
 }
 
 // Titlebar button goes to languages tab
@@ -613,3 +613,4 @@ document.querySelectorAll(".localization-entry").forEach((entry) => {
 });
 
 await loadConfig();
+

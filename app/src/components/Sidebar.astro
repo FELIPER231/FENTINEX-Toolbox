@@ -1,4 +1,4 @@
----
+﻿---
 interface Props {
   t: any;
 }
@@ -10,8 +10,15 @@ const { t } = Astro.props;
   <div class="sidebar-header">
     <img src="logo.svg" width="56" alt="" />
     <div class="sidebar-user">
-      <h1 id="username">WinScript <span id="version"></span></h1>
-      <p><a target="_blank" href="https://github.com/flick9000/">github.com/flick9000</a></p>
+      <h1 id="username">FENTINEX Toolbox <span id="version"></span></h1>
+     <p>
+  <a
+    target="_blank"
+    href="https://github.com/FELIPER231/FENTINEX-Toolbox"
+  >
+    github.com/FELIPER231
+  </a>
+</p>
     </div>
   </div>
   <button id="uncheckAll">{t["sidebar.uncheckAll"]}</button>
@@ -21,7 +28,7 @@ const { t } = Astro.props;
   </div>
   <div class="sidebar-content">
     <div data-tab="tools-tab" class="sidebar-entry">
-      <img src="/icons/sidebar/tools.svg" alt="" />
+      <img src="/logo.svg" width="56" alt="Logo de FENTINEX Toolbox" />
       <h1>{t["nav.tools"]}</h1>
     </div>
     <div data-tab="debloat-tab" class="sidebar-entry">
@@ -175,3 +182,4 @@ const { t } = Astro.props;
     }
   }
 </style>
+

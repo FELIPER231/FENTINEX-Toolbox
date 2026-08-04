@@ -1,8 +1,8 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
-  "productName": "WinScript",
+  "productName": "FENTINEX Toolbox",
   "version": "2.22.0",
-  "identifier": "flick.winscript.dev",
+  "identifier": "com.fentinex.toolbox",
   "build": {
     "devUrl": "http://localhost:4321/",
     "frontendDist": "../dist",
@@ -13,7 +13,7 @@
   "app": {
     "windows": [
       {
-        "title": "WinScript",
+        "title": "FENTINEX Toolbox",
         "width": 1200,
         "height": 800,
         "minWidth": 750,
@@ -51,7 +51,7 @@
         "installMode": "passive"
       },
       "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEVCM0M4RDc0QTJGQ0IzNkUKUldSdXMveWlkSTA4NjdtU0t6TVUxNGNSYWZyb0k4amRodUNTT3lXTXhLcVoxYTNSd0V3ZHZ5SmwK",
-      "endpoints": ["https://github.com/flick9000/winscript/releases/latest/download/latest.json"]
+      "endpoints": ["https://github.com/FELIPER231/FENTINEX-Toolbox/releases/latest/download/latest.json"]
     },
     "cli": {
       "args": [

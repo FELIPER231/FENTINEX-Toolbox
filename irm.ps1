@@ -1,69 +1,85 @@
 $ProgressPreference = "SilentlyContinue"
-$apiUrl = "https://api.github.com/repos/flick9000/winscript/releases/latest"
-$tempFile = [System.IO.Path]::Combine([System.IO.Path]::GetTempPath(), "winscript-portable.exe")
+
+$apiUrl = "https://api.github.com/repos/FELIPER231/FENTINEX-Toolbox/releases/latest"
+$tempFile = [System.IO.Path]::Combine(
+    [System.IO.Path]::GetTempPath(),
+    "FENTINEX-Toolbox-Setup.exe"
+)
 
 $Logo = @"
+ ______ ______ _   _ _______ _____ _   _ ________   __
+|  ____|  ____| \ | |__   __|_   _| \ | |  ____\ \ / /
+| |__  | |__  |  \| |  | |    | | |  \| | |__   \ V /
+|  __| |  __| | . ` |  | |    | | | . ` |  __|   > <
+| |    | |____| |\  |  | |   _| |_| |\  | |____ / . \
+|_|    |______|_| \_|  |_|  |_____|_| \_|______/_/ \_\
 
- __        __ _         ____               _         _   
- \ \      / /(_) _ __  / ___|   ___  _ __ (_) _ __  | |_ 
-  \ \ /\ / / | || '_ \ \___ \  / __|| '__|| || '_ \ | __|
-   \ V  V /  | || | | | ___) || (__ | |   | || |_) || |_ 
-    \_/\_/   |_||_| |_||____/  \___||_|   |_|| .__/  \__|
-                                             |_|         
-
+                FENTINEX Toolbox
 "@
 
 try {
     Clear-Host
-    
-    # Ascii Art
-    Write-Host $Logo
+    Write-Host $Logo -ForegroundColor Cyan
 
-    # Check if the script is running as admin
-    if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) { Write-Host "This script requires administrator privileges."`n"Please run the terminal as an administrator." -ForegroundColor Red; exit }
-    
-    # Remove old file if it exists
+    $currentIdentity = [Security.Principal.WindowsIdentity]::GetCurrent()
+    $principal = New-Object Security.Principal.WindowsPrincipal($currentIdentity)
+    $isAdmin = $principal.IsInRole(
+        [Security.Principal.WindowsBuiltInRole]::Administrator
+    )
+
+    if (-not $isAdmin) {
+        Write-Host ""
+        Write-Host "FENTINEX Toolbox requiere privilegios de administrador." -ForegroundColor Yellow
+        Write-Host "Ejecuta PowerShell como Administrador e intentalo nuevamente." -ForegroundColor Yellow
+        exit 1
+    }
+
     if (Test-Path $tempFile) {
         Remove-Item -Path $tempFile -Force -ErrorAction SilentlyContinue
-        Write-Host "Removed old temporary file." -ForegroundColor Green
-    }
-    
-    # Get latest release info
-    $releaseInfo = Invoke-RestMethod -Uri $apiUrl -Headers @{
-        "Accept"     = "application/vnd.github.v3+json"
-        "User-Agent" = "PowerShell Script"
-    }
-    
-    # Get download URL for portable exe
-    $downloadUrl = ($releaseInfo.assets | Where-Object { $_.name -eq "winscript-portable.exe" }).browser_download_url
-    
-    if (-not $downloadUrl) {
-        throw "Could not find winscript-portable.exe in the latest release"
     }
 
+    Write-Host ""
+    Write-Host "Buscando la ultima version de FENTINEX Toolbox..." -ForegroundColor Cyan
+
+    $releaseInfo = Invoke-RestMethod -Uri $apiUrl -Headers @{
+        "Accept"     = "application/vnd.github.v3+json"
+        "User-Agent" = "FENTINEX-Toolbox"
+    }
+
+    $asset = $releaseInfo.assets |
+        Where-Object { $_.name -match "^FENTINEX\.Toolbox_.*_x64-setup\.exe$" } |
+        Select-Object -First 1
+
+    if (-not $asset) {
+        throw "No se encontro el instalador de FENTINEX Toolbox en la ultima release."
+    }
+
+    $downloadUrl = $asset.browser_download_url
+
+    Write-Host ""
+    Write-Host "Version encontrada: $($releaseInfo.tag_name)" -ForegroundColor Green
+    Write-Host "Descargando FENTINEX Toolbox..." -ForegroundColor Green
+
+    Invoke-WebRequest -Uri $downloadUrl -OutFile $tempFile
+
+    if (-not (Test-Path $tempFile)) {
+        throw "La descarga del instalador no se completo correctamente."
+    }
+
+    Write-Host ""
+    Write-Host "Iniciando FENTINEX Toolbox..." -ForegroundColor Green
+
+    Start-Process -FilePath $tempFile -Wait
+
     if (Test-Path $tempFile) {
-        Write-Host "WinScript already downloaded, starting..." -ForegroundColor Green
-        Start-Process -FilePath $tempFile -Wait
+        Remove-Item -Path $tempFile -Force -ErrorAction SilentlyContinue
     }
-    else {
-        # Download & run the file
-        Write-Host "Downloading from GitHub..." -ForegroundColor Green
-        Invoke-WebRequest -Uri $downloadUrl -OutFile $tempFile
-    
-        Write-Host "Starting WinScript..." -ForegroundColor Green
-        Start-Process -FilePath $tempFile -Wait
-    }
-    
-    # Clean up
-    if (Test-Path $tempFile) {
-        Remove-Item -Path $tempFile -Force
-        Write-Host ""
-        Write-Host "Thanks for using WinScript!" -ForegroundColor Green
-        Write-Host ""
-    }
-    
+
+    Write-Host ""
+    Write-Host "Gracias por usar FENTINEX Toolbox." -ForegroundColor Cyan
 }
 catch {
-    Write-Host "Error: $_" -ForegroundColor Red
-    Write-Host "Failed to download or run WinScript." -ForegroundColor Red
+    Write-Host ""
+    Write-Host "Error: $($_.Exception.Message)" -ForegroundColor Red
+    Write-Host "No fue posible descargar o ejecutar FENTINEX Toolbox." -ForegroundColor Red
 }

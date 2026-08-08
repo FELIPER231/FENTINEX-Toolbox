@@ -1,7 +1,7 @@
 {
-  "name": "winscript",
+  "name": "fentinex-toolbox",
   "private": true,
-  "version": "2.22.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "astro dev",

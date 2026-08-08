@@ -1,8 +1,9 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "FENTINEX Toolbox",
-  "version": "2.22.0",
+  "version": "1.0.0",
   "identifier": "com.fentinex.toolbox",
+
   "build": {
     "devUrl": "http://localhost:4321/",
     "frontendDist": "../dist",
@@ -10,6 +11,7 @@
     "beforeBuildCommand": "npm run build",
     "removeUnusedCommands": true
   },
+
   "app": {
     "windows": [
       {
@@ -26,15 +28,18 @@
         "fullscreen": false
       }
     ],
+
     "security": {
       "csp": null
     }
   },
+
   "bundle": {
-    "publisher": "flick9000",
+    "publisher": "FENTINEX",
     "license": "GPL-3.0",
     "createUpdaterArtifacts": true,
     "active": true,
+
     "windows": {
       "nsis": {
         "installerIcon": "icons/favicon.ico",
@@ -42,17 +47,29 @@
         "installMode": "both"
       }
     },
-    "targets": ["nsis"],
-    "icon": ["icons/favicon.ico"]
+
+    "targets": [
+      "nsis"
+    ],
+
+    "icon": [
+      "icons/favicon.ico"
+    ]
   },
+
   "plugins": {
     "updater": {
       "windows": {
         "installMode": "passive"
       },
+
       "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEVCM0M4RDc0QTJGQ0IzNkUKUldSdXMveWlkSTA4NjdtU0t6TVUxNGNSYWZyb0k4amRodUNTT3lXTXhLcVoxYTNSd0V3ZHZ5SmwK",
-      "endpoints": ["https://github.com/FELIPER231/FENTINEX-Toolbox/releases/latest/download/latest.json"]
+
+      "endpoints": [
+        "https://github.com/FELIPER231/FENTINEX-Toolbox/releases/latest/download/latest.json"
+      ]
     },
+
     "cli": {
       "args": [
         {

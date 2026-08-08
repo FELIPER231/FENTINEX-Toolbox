@@ -63,7 +63,7 @@
         "installMode": "passive"
       },
 
-      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEVCM0M4RDc0QTJGQ0IzNkUKUldSdXMveWlkSTA4NjdtU0t6TVUxNGNSYWZyb0k4amRodUNTT3lXTXhLcVoxYTNSd0V3ZHZ5SmwK",
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDI1MEI2NTNBMEM3QTI5QjYKUldTMktYb01PbVVMSmRZcmZtZHZlcDBNVDkvbDZvVEpENXBuOVJsYU42NnpXNVdoTGMvMm5oODEK",
 
       "endpoints": [
         "https://github.com/FELIPER231/FENTINEX-Toolbox/releases/latest/download/latest.json"

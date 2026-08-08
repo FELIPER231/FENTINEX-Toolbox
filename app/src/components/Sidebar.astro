@@ -8,7 +8,11 @@ const { t } = Astro.props;
 
 <div id="sidebar" class="sidebar">
   <div class="sidebar-header">
-    <img src="logo.svg" width="56" alt="" />
+    <img
+  class="fentinex-logo"
+  src="/fentinex-logo.png"
+  alt="Logo de FENTINEX Toolbox"
+/>
     <div class="sidebar-user">
       <h1 id="username">FENTINEX Toolbox <span id="version"></span></h1>
      <p>
@@ -28,9 +32,9 @@ const { t } = Astro.props;
   </div>
   <div class="sidebar-content">
     <div data-tab="tools-tab" class="sidebar-entry">
-      <img src="/logo.svg" width="56" alt="Logo de FENTINEX Toolbox" />
-      <h1>{t["nav.tools"]}</h1>
-    </div>
+  <img src="/icons/sidebar/tools.svg" alt="" />
+  <h1>{t["nav.tools"]}</h1>
+</div>
     <div data-tab="debloat-tab" class="sidebar-entry">
       <img src="/icons/sidebar/debloat.ico" alt="" />
       <h1>{t["nav.debloat"]}</h1>
@@ -181,5 +185,11 @@ const { t } = Astro.props;
       animation: slide-in 0.3s ease forwards;
     }
   }
+.fentinex-logo {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
 </style>
 
